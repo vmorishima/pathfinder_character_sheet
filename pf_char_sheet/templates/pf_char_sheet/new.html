@@ -1,0 +1,40 @@
+<h1>New Character</h1>
+
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
+
+<!--<form action="/save/" method="post">
+    {% csrf_token %}
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" required><br>
+    <label for="level">Level: </label>
+    <input type="number" name="level" id="level" required ><br>
+    <label for="class">Class: </label>
+    <input type="text" name="class" id="class" required><br>
+    <label for="alignment">Alignment: </label>
+    <select name="alignment" id="alignment" required>
+        <option value="" disabled selected>--</option>
+        <option value="LG">Lawful Good</option>
+        <option value="NG">Neutral Good</option>
+        <option value="CG">Chaotic Good</option>
+        <option value="LN">Lawful Neutral</option>
+        <option value="N">True Neutral</option>
+        <option value="CN">Chaotic Neutral</option>
+        <option value="LE">Lawful Evil</option>
+        <option value="NE">Neutral Evil</option>
+        <option value="CE">Chaotic Evil</option>
+    </select><br>
+    <label for="gender">Gender: </label>
+    <input type="text" name="gender" id="gender" required><br>
+    <label for="race">Race: </label>
+    <input type="text" name="race" id="race" required><br>
+
+    <input type="submit" value="Save">
+</form>-->

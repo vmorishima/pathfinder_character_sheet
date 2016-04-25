@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/aileron" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'fonts/css/rpg-awesome.css' %}">
+    <script src="{% static 'scripts/app.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+    <link href="{% static "bootstrap/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm" />
+</form>

@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<head>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/aileron" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'fonts/css/rpg-awesome.css' %}">
+    <script src="{% static 'scripts/app.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+    <link href="{% static "bootstrap/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
+</head>
+{% if char_list %}
+    <ul>
+    {% for char in char_list %}
+        <li>
+        <a href="/{{ char.id }}/">{{ char.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No characters yet.</p>
+{% endif %}
+<a href="/new/">Create new character?</a>

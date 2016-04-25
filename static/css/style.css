@@ -1,0 +1,15 @@
+body {
+    background-color: #fff6d6;
+    font-family: 'AileronThin', Consolas, Verdana;
+}
+td>input {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+td {
+    padding: 3px;
+}

@@ -41,12 +41,39 @@ class Character(models.Model):
     #char_img = models.ImageField()
 
     # Stats
+    def calculate_ability_modifier(self, ability):
+        return int(floor((ability-10)/2.0))
+
     STR = models.IntegerField(default=10)
     DEX = models.IntegerField(default=10)
     CON = models.IntegerField(default=10)
     CHA = models.IntegerField(default=10)
     INT = models.IntegerField(default=10)
     WIS = models.IntegerField(default=10)
+
+    def _get_str_modifier(self):
+        return self.calculate_ability_modifier(self.STR)
+    str_modifier = property(_get_str_modifier)
+
+    def _get_dex_modifier(self):
+        return self.calculate_ability_modifier(self.DEX)
+    dex_modifier = property(_get_dex_modifier)
+
+    def _get_con_modifier(self):
+        return self.calculate_ability_modifier(self.CON)
+    con_modifier = property(_get_con_modifier)
+
+    def _get_cha_modifier(self):
+        return self.calculate_ability_modifier(self.CHA)
+    cha_modifier = property(_get_cha_modifier)
+
+    def _get_int_modifier(self):
+        return self.calculate_ability_modifier(self.INT)
+    int_modifier = property(_get_int_modifier)
+
+    def _get_wis_modifier(self):
+        return self.calculate_ability_modifier(self.WIS)
+    wis_modifier = property(_get_wis_modifier)
 
     HP = models.IntegerField(default=10)
     FORT = models.IntegerField(default=10)
@@ -72,9 +99,6 @@ class Character(models.Model):
 
     def __str__(self):
         return self.name
-
-    def calculate_ability_modifier(self, ability):
-        return int(floor((ability-10)/2.0))
 
     def _get_size_modifier(self):
         if self.size == 'c':

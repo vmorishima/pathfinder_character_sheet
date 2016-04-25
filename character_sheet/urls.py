@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
+import os
 
 urlpatterns = [
     url(r'^', include('pf_char_sheet.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
+
+urlpatterns += static('/scripts/', document_root=os.path.join(settings.STATICFILES_DIRS[0], 'scripts'))
+urlpatterns += static('/styles/', document_root=os.path.join(settings.STATICFILES_DIRS[0], 'styles'))

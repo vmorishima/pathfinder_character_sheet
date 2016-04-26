@@ -1,4 +1,15 @@
 {% load staticfiles %}
+<head>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/aileron" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'fonts/css/rpg-awesome.css' %}">
+    <script src="{% static 'scripts/app.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+    <link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
+</head>
+<div class="container">
 <h1>New Character</h1>
 
 {% if error_message %}
@@ -7,10 +18,12 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
+    <table class="table borderless">
+    {{ form.as_table }}
+        </table>
+    <input class="btn btn-primary" type="submit" value="Save">
 </form>
-
+</div>
 <!--<form action="/save/" method="post">
     {% csrf_token %}
     <label for="name">Name: </label>

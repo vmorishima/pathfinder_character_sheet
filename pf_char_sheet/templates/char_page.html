@@ -1,64 +1,78 @@
 {% load staticfiles %}
 <head>
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/aileron" type="text/css"/>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'fonts/css/rpg-awesome.css' %}">
     <script src="{% static 'scripts/app.js' %}"></script>
     <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
-    <link href="{% static "bootstrap/css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
 </head>
+<div class="container">
 <h1>{{ char.name }}</h1>
 
-<div class="container">
+
     <p>Level {{ char.level }} {{ char.character_class }}</p>
     <p>{{ char.alignment }} {{ char.gender }} {{ char.race }}</p>
-</div>
 
-<div class="container">
+<div class="row">
+<div class="col-xs-3">
 <div class="table-responsive">
-<table class="table">
+<table class="table borderless">
     <tr>
-        <td colspan="3"><div class="align-center">STATS</div></td>
+        <td colspan="2"><div class="align-center">STATS</div></td>
     </tr>
     <tr>
         <td><i class="ra ra-lion"></i> STR: {{ char.STR }}</td>
-        <td><input readonly size="1" id="stroutput"><button type="button" id="strbutton" onclick="roll20({{ char.str_modifier }}, 'str')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+        <td><input readonly size="1" id="stroutput"> <button class="btn btn-default" type="button" id="strbutton" onclick="roll20({{ char.str_modifier }}, 'str')"><i class="ra  ra-perspective-dice-one"></i></button></td>
     </tr>
     <tr>
         <td><i class="ra ra-rabbit"></i> DEX: {{ char.DEX }}</td>
-        <td><input readonly size="1" id="dexoutput"><button type="button" id="dexbutton" onclick="roll20({{ char.dex_modifier }}, 'dex')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+        <td><input readonly size="1" id="dexoutput"> <button class="btn btn-default" type="button" id="dexbutton" onclick="roll20({{ char.dex_modifier }}, 'dex')"><i class="ra  ra-perspective-dice-one"></i></button></td>
     </tr>
     <tr>
         <td><i class="ra ra-snail"></i> CON: {{ char.CON }}</td>
-        <td><input readonly size="1" id="conoutput"><button type="button" id="conbutton" onclick="roll20({{ char.con_modifier }}, 'con')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+        <td><input readonly size="1" id="conoutput"> <button class="btn btn-default" type="button" id="conbutton" onclick="roll20({{ char.con_modifier }}, 'con')"><i class="ra  ra-perspective-dice-one"></i></button></td>
     </tr>
     <tr>
     <td><i class="ra ra-fox"></i> CHA: {{ char.CHA }}</td>
-        <td><input readonly size="1" id="chaoutput"><button type="button" id="chabutton" onclick="roll20({{ char.cha_modifier }}, 'cha')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+        <td><input readonly size="1" id="chaoutput"> <button class="btn btn-default" type="button" id="chabutton" onclick="roll20({{ char.cha_modifier }}, 'cha')"><i class="ra  ra-perspective-dice-one"></i></button></td>
     </tr>
     <tr>
     <td><i class="ra ra-cat"></i> INT: {{ char.INT }}</td>
-        <td><input readonly size="1" id="intoutput"><button type="button" id="intbutton" onclick="roll20({{ char.int_modifier }}, 'int')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+        <td><input readonly size="1" id="intoutput"> <button class="btn btn-default" type="button" id="intbutton" onclick="roll20({{ char.int_modifier }}, 'int')"><i class="ra  ra-perspective-dice-one"></i></button></td>
     </tr>
     <tr>
     <td><i class="ra ra-raven"></i> WIS: {{ char.WIS }}</td>
-        <td><input readonly size="1" id="wisoutput"><button type="button" id="wisbutton" onclick="roll20({{ char.wis_modifier }}, 'wis')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+        <td><input readonly size="1" id="wisoutput"> <button class="btn btn-default" type="button" id="wisbutton" onclick="roll20({{ char.wis_modifier }}, 'wis')"><i class="ra  ra-perspective-dice-one"></i></button></td>
     </tr>
 
     <tr>
     <td><i class="ra ra-muscle-up"></i> FORT: {{ char.fort_save }}</td>
-    <td><input readonly size="1" id="fortoutput"><button type="button" id="fortbutton" onclick="roll20({{ char.fort_save }}, 'fort')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+    <td><input readonly size="1" id="fortoutput"> <button class="btn btn-default" type="button" id="fortbutton" onclick="roll20({{ char.fort_save }}, 'fort')"><i class="ra  ra-perspective-dice-one"></i></button></td>
     </tr>
     <tr>
     <td><i class="ra ra-aware"></i> WILL: {{ char.will_save }}</td>
-       <td><input readonly size="1" id="willoutput"><button type="button" id="willbutton" onclick="roll20({{ char.will_save }}, 'will')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+       <td><input readonly size="1" id="willoutput"> <button class="btn btn-default" type="button" id="willbutton" onclick="roll20({{ char.will_save }}, 'will')"><i class="ra  ra-perspective-dice-one"></i></button></td>
         </tr>
     <tr>
     <td><i class="ra ra-player-dodge"></i>REFLEX: {{ char.reflex_save }}</td>
-        <td><input readonly size="1" id="reflexoutput"><button type="button" id="reflexbutton" onclick="roll20({{ char.reflex_save }}, 'reflex')"><i class="ra  ra-perspective-dice-one"></i></button></td>
+        <td><input readonly size="1" id="reflexoutput"> <button class="btn btn-default" type="button" id="reflexbutton" onclick="roll20({{ char.reflex_save }}, 'reflex')"><i class="ra  ra-perspective-dice-one"></i></button></td>
     </tr>
 </table>
+    </div>
+    </div>
+<div class="col-xs-2"></div>
+    <div class="col-xs-3">
+        <div class="table-responsive">
+            <table class="table borderless">
+                <tr>
+                    <td colspan="2">SKILLS</td>
+                </tr>
+            </table>
+        </div>
+    </div>
     </div>
     </div>
 <ul>

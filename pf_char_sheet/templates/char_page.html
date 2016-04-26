@@ -9,72 +9,383 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
 </head>
-<div class="container">
-<h1>{{ char.name }}</h1>
+<div class="container spacer">
+    <div class="row">
+        <div class="col-xs-3 col-xs-offset-1">
+            <h2>{{ char.name }}</h2>
+            <p>Level {{ char.level }} {{ char.character_class }} ({{ char.XP }} XP)</p>
+            <p>{{ char.alignment }} {{ char.gender }} {{ char.race }}</p>
 
+        </div>
+        <div class="col-xs-6 col-xs-offset-1">
+            <div class="progress spacer">
+                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ char.current_HP }}" aria-valuemin="0"
+                     aria-valuemax="{{ char.HP }}" style="width: {{ char.hp_percentage }}%">
+                    {{ char.current_HP }}/{{ char.HP }} HP
+                </div>
+            </div>
+            <p><i class="fa fa-circle gold"></i> {{ char.GP }} / <i class="fa fa-circle silver"></i> {{ char.SP }} / <i
+                    class="fa fa-circle copper"></i> {{ char.CP }}</p>
+            <p><i class="fa fa-suitcase"></i> {{ char.inventory }}</p>
+            <p><a class="btn btn-xs btn-default pull-right" href="./character_update/">Update</a></p>
 
-    <p>Level {{ char.level }} {{ char.character_class }}</p>
-    <p>{{ char.alignment }} {{ char.gender }} {{ char.race }}</p>
-
-<div class="row">
-<div class="col-xs-3">
-<div class="table-responsive">
-<table class="table borderless">
-    <tr>
-        <td colspan="2"><div class="align-center">STATS</div></td>
-    </tr>
-    <tr>
-        <td><i class="ra ra-lion"></i> STR: {{ char.STR }}</td>
-        <td><input readonly size="1" id="stroutput"> <button class="btn btn-default" type="button" id="strbutton" onclick="roll20({{ char.str_modifier }}, 'str')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-    </tr>
-    <tr>
-        <td><i class="ra ra-rabbit"></i> DEX: {{ char.DEX }}</td>
-        <td><input readonly size="1" id="dexoutput"> <button class="btn btn-default" type="button" id="dexbutton" onclick="roll20({{ char.dex_modifier }}, 'dex')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-    </tr>
-    <tr>
-        <td><i class="ra ra-snail"></i> CON: {{ char.CON }}</td>
-        <td><input readonly size="1" id="conoutput"> <button class="btn btn-default" type="button" id="conbutton" onclick="roll20({{ char.con_modifier }}, 'con')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-    </tr>
-    <tr>
-    <td><i class="ra ra-fox"></i> CHA: {{ char.CHA }}</td>
-        <td><input readonly size="1" id="chaoutput"> <button class="btn btn-default" type="button" id="chabutton" onclick="roll20({{ char.cha_modifier }}, 'cha')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-    </tr>
-    <tr>
-    <td><i class="ra ra-cat"></i> INT: {{ char.INT }}</td>
-        <td><input readonly size="1" id="intoutput"> <button class="btn btn-default" type="button" id="intbutton" onclick="roll20({{ char.int_modifier }}, 'int')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-    </tr>
-    <tr>
-    <td><i class="ra ra-raven"></i> WIS: {{ char.WIS }}</td>
-        <td><input readonly size="1" id="wisoutput"> <button class="btn btn-default" type="button" id="wisbutton" onclick="roll20({{ char.wis_modifier }}, 'wis')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-    </tr>
-
-    <tr>
-    <td><i class="ra ra-muscle-up"></i> FORT: {{ char.fort_save }}</td>
-    <td><input readonly size="1" id="fortoutput"> <button class="btn btn-default" type="button" id="fortbutton" onclick="roll20({{ char.fort_save }}, 'fort')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-    </tr>
-    <tr>
-    <td><i class="ra ra-aware"></i> WILL: {{ char.will_save }}</td>
-       <td><input readonly size="1" id="willoutput"> <button class="btn btn-default" type="button" id="willbutton" onclick="roll20({{ char.will_save }}, 'will')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-        </tr>
-    <tr>
-    <td><i class="ra ra-player-dodge"></i>REFLEX: {{ char.reflex_save }}</td>
-        <td><input readonly size="1" id="reflexoutput"> <button class="btn btn-default" type="button" id="reflexbutton" onclick="roll20({{ char.reflex_save }}, 'reflex')"><i class="ra  ra-perspective-dice-one"></i></button></td>
-    </tr>
-</table>
-    </div>
-    </div>
-<div class="col-xs-2"></div>
-    <div class="col-xs-3">
-        <div class="table-responsive">
-            <table class="table borderless">
-                <tr>
-                    <td colspan="2">SKILLS</td>
-                </tr>
-            </table>
         </div>
     </div>
+    <div class="spacer"></div>
+</div>
+<div class="container spacer">
+    <div class="row spacer">
+        <div class="col-xs-3 col-xs-offset-1 border">
+            <div class="table-responsive">
+                <table class="table borderless">
+                    <tr>
+                        <td><strong>STATS</strong></td>
+                        <td><a class="btn btn-xs btn-default" href="./stat_update/">Update</a></td>
+                    </tr>
+                    <tr>
+                        <td><i class="ra ra-lion"></i> STR: {{ char.STR }}</td>
+                        <td><input readonly size="1" id="stroutput">
+                            <button class="btn btn-default" type="button" id="strbutton"
+                                    onclick="roll20({{ char.str_modifier }}, 'str')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="ra ra-rabbit"></i> DEX: {{ char.DEX }}</td>
+                        <td><input readonly size="1" id="dexoutput">
+                            <button class="btn btn-default" type="button" id="dexbutton"
+                                    onclick="roll20({{ char.dex_modifier }}, 'dex')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="ra ra-snail"></i> CON: {{ char.CON }}</td>
+                        <td><input readonly size="1" id="conoutput">
+                            <button class="btn btn-default" type="button" id="conbutton"
+                                    onclick="roll20({{ char.con_modifier }}, 'con')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="ra ra-fox"></i> CHA: {{ char.CHA }}</td>
+                        <td><input readonly size="1" id="chaoutput">
+                            <button class="btn btn-default" type="button" id="chabutton"
+                                    onclick="roll20({{ char.cha_modifier }}, 'cha')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="ra ra-cat"></i> INT: {{ char.INT }}</td>
+                        <td><input readonly size="1" id="intoutput">
+                            <button class="btn btn-default" type="button" id="intbutton"
+                                    onclick="roll20({{ char.int_modifier }}, 'int')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="ra ra-raven"></i> WIS: {{ char.WIS }}</td>
+                        <td><input readonly size="1" id="wisoutput">
+                            <button class="btn btn-default" type="button" id="wisbutton"
+                                    onclick="roll20({{ char.wis_modifier }}, 'wis')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><i class="ra ra-muscle-up"></i> FORT: {{ char.fort_save }}</td>
+                        <td><input readonly size="1" id="fortoutput">
+                            <button class="btn btn-default" type="button" id="fortbutton"
+                                    onclick="roll20({{ char.fort_save }}, 'fort')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="ra ra-aware"></i> WILL: {{ char.will_save }}</td>
+                        <td><input readonly size="1" id="willoutput">
+                            <button class="btn btn-default" type="button" id="willbutton"
+                                    onclick="roll20({{ char.will_save }}, 'will')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="ra ra-player-dodge"></i>REFLEX: {{ char.reflex_save }}</td>
+                        <td><input readonly size="1" id="reflexoutput">
+                            <button class="btn btn-default" type="button" id="reflexbutton"
+                                    onclick="roll20({{ char.reflex_save }}, 'reflex')"><i
+                                    class="ra  ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-xs-6 col-xs-offset-1 border">
+            <div class="table-responsive">
+                <table class="table borderless">
+                    <tr>
+                        <td><strong>SKILLS</strong></td>
+                        <td><a class="btn btn-xs btn-default" href="./skill_update/">Update</a></td>
+                    </tr>
+                    <tr>
+                        <td>ACROBATICS: {{ char.acrobatics }}</td>
+                        <td><input readonly size="1" id="acrobaticsoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.dex_modifier }}, 'acrobatics')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>APPRAISE: {{ char.appraise }}</td>
+                        <td><input readonly size="1" id="appraiseoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'appraise')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BLUFF: {{ char.bluff }}</td>
+                        <td><input readonly size="1" id="bluffoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.cha_modifier }}, 'bluff')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CLIMB: {{ char.climb }}</td>
+                        <td><input readonly size="1" id="climboutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.str_modifier }}, 'climb')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DIPLOMACY: {{ char.diplomacy }}</td>
+                        <td><input readonly size="1" id="diplomacyoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.cha_modifier }}, 'diplomacy')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DISABLE DEVICE: {{ char.disable_device }}</td>
+                        <td><input readonly size="1" id="disabledeviceoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.dex_modifier }}, 'disabledevice')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DISGUISE: {{ char.disguise }}</td>
+                        <td><input readonly size="1" id="disguiseoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.cha_modifier }}, 'disguise')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ESCAPE ARTIST: {{ char.escape_artist }}</td>
+                        <td><input readonly size="1" id="escapeartistoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.dex_modifier }}, 'escapeartist')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FLY: {{ char.fly }}</td>
+                        <td><input readonly size="1" id="flyoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.dex_modifier }}, 'fly')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HANDLE ANIMAL: {{ char.handle_animal }}</td>
+                        <td><input readonly size="1" id="handleanimaloutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.cha_modifier }}, 'handleanimal')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HEAL: {{ char.heal }}</td>
+                        <td><input readonly size="1" id="healoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.wis_modifier }}, 'heal')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>INTIMIDATE: {{ char.intimidate }}</td>
+                        <td><input readonly size="1" id="intimidateoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.cha_modifier }}, 'intimidate')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (ARCANA): {{ char.knowledge_arcana }}</td>
+                        <td><input readonly size="1" id="karcanaoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'karcana')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (DUNGEONEERING): {{ char.knowledge_dungeoneering }}</td>
+                        <td><input readonly size="1" id="kdungeonoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'kdungeon')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (ENGINEERING): {{ char.knowledge_engineering }}</td>
+                        <td><input readonly size="1" id="kengineeringoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'kengineering')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (GEOGRAPHY): {{ char.knowledge_geography }}</td>
+                        <td><input readonly size="1" id="kgeographyoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'kgeography')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (HISTORY): {{ char.knowledge_history }}</td>
+                        <td><input readonly size="1" id="khistoryoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'khistory')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (LOCAL): {{ char.knowledge_local }}</td>
+                        <td><input readonly size="1" id="klocaloutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'klocal')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (NATURE): {{ char.knowledge_nature }}</td>
+                        <td><input readonly size="1" id="knatureoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'knature')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (NOBILITY): {{ char.knowledge_nobility }}</td>
+                        <td><input readonly size="1" id="knobilityoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'knobility')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (PLANES): {{ char.knowledge_planes }}</td>
+                        <td><input readonly size="1" id="kplanesoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'kplanes')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KNOWLEDGE (RELIGION): {{ char.knowledge_religion }}</td>
+                        <td><input readonly size="1" id="kreligionoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'kreligion')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>LINGUISTICS: {{ char.linguistics }}</td>
+                        <td><input readonly size="1" id="linguisticsoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'linguistics')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PERCEPTION: {{ char.perception }}</td>
+                        <td><input readonly size="1" id="perceptionoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.wis_modifier }}, 'perception')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RIDE: {{ char.ride }}</td>
+                        <td><input readonly size="1" id="rideoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.dex_modifier }}, 'ride')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SENSE MOTIVE: {{ char.sense_motive }}</td>
+                        <td><input readonly size="1" id="sensemotiveoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.wis_modifier }}, 'sensemotive')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SLEIGHT OF HAND: {{ char.sleight_of_hand }}</td>
+                        <td><input readonly size="1" id="sohoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.dex_modifier }}, 'soh')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SPELLCRAFT: {{ char.spellcraft }}</td>
+                        <td><input readonly size="1" id="spellcraftoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.int_modifier }}, 'spellcraft')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>STEALTH: {{ char.stealth }}</td>
+                        <td><input readonly size="1" id="stealthoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.dex_modifier }}, 'stealth')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SURVIVAL: {{ char.survival }}</td>
+                        <td><input readonly size="1" id="survivaloutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.wis_modifier }}, 'survival')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SWIM: {{ char.swim }}</td>
+                        <td><input readonly size="1" id="swimoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.str_modifier }}, 'swim')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>USE MAGIC DEVICE: {{ char.use_magic_device }}</td>
+                        <td><input readonly size="1" id="umdoutput">
+                            <button class="btn btn-default" type="button"
+                                    onclick="roll20({{ char.cha_modifier }}, 'umd')"><i
+                                    class="ra ra-perspective-dice-one"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
-    </div>
+</div>
 <ul>
     <li>HP: {{ char.HP }}</li>
     <li>Base Attack Bonus: {{ char.BAB }}</li>
@@ -82,5 +393,5 @@
     <li>CMD: {{ char.CMD }}</li>
 
 </ul>
-<a href="./character_update/">Update</a>
+
 <a href="./character_delete/">Delete</a>

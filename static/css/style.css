@@ -1,5 +1,6 @@
 body {
     background-image: url('../ecailles.png');
+    background-color: darkcyan;
 }
 
 .table {
@@ -14,4 +15,30 @@ body {
 
 .container {
     background-color: white !important;
+}
+
+label {
+    font-weight: lighter;
+}
+
+.ra-perspective-dice-one {
+    color: #9b221b;
+}
+.gold {
+    color:gold;
+}
+.silver {
+    color:silver;
+}
+.copper {
+    color: #914d24;
+}
+.spacer {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.border {
+    border: 1px ridge;
+    padding: 10px;
 }

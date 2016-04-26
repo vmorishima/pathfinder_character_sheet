@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pf_char_sheet',
-    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (

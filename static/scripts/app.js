@@ -16,3 +16,5 @@ function roll20(modifier, stat) {
             console.log(id);
             document.getElementById(id).value=num;
         }
+
+$('.collapse').collapse();

@@ -24,16 +24,33 @@ class IndexView(generic.ListView):
 class characterCreate(CreateView):
     template_name = 'new.html'
     model = Character
-    fields = ['name', 'level', 'character_class', 'alignment', 'gender', 'race', 'size',
-              'STR','DEX','CON','INT','WIS','CHA',
-              'HP','FORT','WILL','REFLEX','BAB']
+    fields = ['name', 'level', 'XP', 'character_class', 'alignment', 'gender', 'race', 'size',
+              'HP','current_HP',
+              'inventory','CP','SP','GP']
 
 class characterUpdate(UpdateView):
     model = Character
-    fields = ['name', 'level', 'character_class', 'alignment', 'gender', 'race', 'size',
-              'STR','DEX','CON','INT','WIS','CHA',
-              'HP','FORT','WILL','REFLEX','BAB']
+    fields = ['name', 'level', 'XP', 'character_class', 'alignment', 'gender', 'race', 'size',
+              'HP','current_HP',
+              'inventory','CP','SP','GP']
     template_name = 'character_update.html'
+
+class statUpdate(UpdateView):
+    model = Character
+    fields = ['STR','DEX','CON','INT','WIS','CHA',
+              'HP','FORT','WILL','REFLEX','BAB']
+    template_name = 'stat_update.html'
+
+class skillUpdate(UpdateView):
+    model = Character
+    fields = ['acrobatics', 'appraise', 'bluff', 'climb', 'diplomacy', 'disable_device',
+              'disguise', 'escape_artist', 'fly', 'handle_animal', 'heal', 'intimidate',
+              'knowledge_arcana', 'knowledge_dungeoneering', 'knowledge_engineering',
+              'knowledge_geography', 'knowledge_history', 'knowledge_local', 'knowledge_nature',
+              'knowledge_nobility', 'knowledge_planes', 'knowledge_religion', 'linguistics',
+              'perception', 'ride', 'sense_motive', 'sleight_of_hand', 'spellcraft',
+              'stealth', 'survival', 'swim', 'use_magic_device']
+    template_name = 'skill_update.html'
 
 class characterDelete(DeleteView):
     model = Character

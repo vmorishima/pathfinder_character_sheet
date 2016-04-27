@@ -24,7 +24,7 @@ class IndexView(generic.ListView):
 class characterCreate(CreateView):
     template_name = 'new.html'
     model = Character
-    fields = ['name', 'level', 'XP', 'character_class', 'alignment', 'gender', 'race', 'size',
+    fields = ['name', 'level', 'character_class', 'alignment', 'gender', 'race', 'size',
               'HP','current_HP',
               'inventory','CP','SP','GP']
 

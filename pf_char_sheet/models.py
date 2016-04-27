@@ -79,7 +79,7 @@ class Character(models.Model):
         return self.calculate_ability_modifier(self.WIS)
     wis_modifier = property(_get_wis_modifier)
 
-    XP = models.IntegerField(default=0, verbose_name='Current HP')
+    XP = models.IntegerField(default=0, verbose_name='Current XP')
     HP = models.IntegerField(default=10, verbose_name='Max HP')
     current_HP = models.IntegerField(default=10, verbose_name='Current HP')
 

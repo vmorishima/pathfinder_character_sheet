@@ -42,3 +42,7 @@ label {
     border: 1px ridge;
     padding: 10px;
 }
+
+.small {
+    font-size:14px;
+}

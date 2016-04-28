@@ -31,7 +31,7 @@ class characterCreate(CreateView):
 class characterUpdate(UpdateView):
     model = Character
     fields = ['name', 'level', 'XP', 'character_class', 'alignment', 'gender', 'race', 'size',
-              'HP','current_HP',
+              'HP','current_HP', 'base_AC',
               'inventory','CP','SP','GP']
     template_name = 'character_update.html'
 

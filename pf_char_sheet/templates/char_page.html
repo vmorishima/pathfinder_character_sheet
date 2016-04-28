@@ -15,11 +15,20 @@
             <h2>{{ char.name }}</h2>
             <p>Level {{ char.level }} {{ char.character_class }} ({{ char.XP }} XP)</p>
             <p>{{ char.alignment }} {{ char.gender }} {{ char.race }}</p>
+            <div class="table-responsive">
+                <table class="table borderless small">
+                    <tr><td><i class="ra ra-shield"></i> AC: {{ char.AC }}</td> <td><i class="ra ra-sword"></i> BAB: {{ char.BAB }}</td>
+                    </tr>
+                    <tr><td><i class="ra ra-on-target"></i> CMB: {{ char.CMB }}</td> <td><i class="ra ra-divert"></i>
+                        CMD: {{ char.CMD }}</td></tr>
+                </table>
+            </div>
 
         </div>
         <div class="col-xs-6 col-xs-offset-1">
             <div class="progress spacer">
-                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ char.current_HP }}" aria-valuemin="0"
+                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ char.current_HP }}"
+                     aria-valuemin="0"
                      aria-valuemax="{{ char.HP }}" style="width: {{ char.hp_percentage }}%">
                     {{ char.current_HP }}/{{ char.HP }} HP
                 </div>
@@ -386,12 +395,5 @@
         </div>
     </div>
 </div>
-<ul>
-    <li>HP: {{ char.HP }}</li>
-    <li>Base Attack Bonus: {{ char.BAB }}</li>
-    <li>CMB: {{ char.CMB }}</li>
-    <li>CMD: {{ char.CMD }}</li>
-
-</ul>
 
 <a href="./character_delete/">Delete</a>
